@@ -40,6 +40,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// ✅ Root route (browser मध्ये test साठी)
+app.get("/", (req, res) => {
+  res.json({ message: "Backend is running successfully 🚀" });
+});
+
 // Routes
 app.use("/api/admin", require("./routes/userRoutes"));
 app.use("/api/admin/project", require("./routes/adminRoutes"));
@@ -65,5 +70,5 @@ mongoose
     console.error("MongoDB Error:", err.message);
   });
 
-
+// ✅ Vercel साठी export
 module.exports = app;
